@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  openvidu-demo: 
+    image: nginx:latest
+    container_name: openvidu-demo
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./web:/web
+    # ports:
+    #   - "80:80"
+    tty: true
+    environment: 
+      - VIRTUAL_HOST=openvidu-demo.sysadmin-werner.de
+      - LETSENCRYPT_HOST=openvidu-demo.sysadmin-werner.de
+      - LETSENCRYPT_EMAIL=admin@sysadmin-werner.de
+
+networks: 
+  default:
+    external: 
+      name: webproxy
